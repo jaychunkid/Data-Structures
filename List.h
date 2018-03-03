@@ -1,25 +1,25 @@
-//ÁĞ±í³éÏóÀà
+//åˆ—è¡¨æŠ½è±¡ç±»
 #ifndef LIST_H
 #define LIST_H
 
 template <typename Elem>
 class List {
 public:
-	virtual void clear() = 0;                          //Çå¿ÕÁĞ±íÄÚÈİ
-	virtual void insert(const Elem &e) = 0;			   //ÏòÖ¸¶¨Î»ÖÃ²åÈëÔªËØ
-	virtual void pushBack(const Elem &e) = 0;          //ÏòÁĞ±íÎ²²¿×·¼ÓÔªËØ
-	virtual void remove() = 0;                         //´ÓÖ¸¶¨Î»ÖÃÉ¾³ıÔªËØ
+	virtual void clear() = 0;                          //æ¸…ç©ºåˆ—è¡¨å†…å®¹
+	virtual void insert(const Elem &e) = 0;	           //å‘æŒ‡å®šä½ç½®æ’å…¥å…ƒç´ 
+	virtual void pushBack(const Elem &e) = 0;          //å‘åˆ—è¡¨å°¾éƒ¨è¿½åŠ å…ƒç´ 
+	virtual void remove() = 0;                         //ä»æŒ‡å®šä½ç½®åˆ é™¤å…ƒç´ 
 
-	virtual unsigned curPos() = 0;                     //·µ»Øµ±Ç°Ö¸¶¨Î»ÖÃ
-	virtual bool setPos(unsigned pos) = 0;             //ÉèÖÃÖ¸¶¨µÄÎ»ÖÃ
-	virtual void moveToFront() = 0;                    //ÉèÖÃÖ¸¶¨Î»ÖÃÖÁ±íÍ·
-	virtual void moveToBack() = 0;                     //ÉèÖÃÖ¸¶¨Î»ÖÃÖÁ±íÎ²
-	virtual bool getValue(Elem &e)const = 0;           //»ñÈ¡µ±Ç°Ö¸¶¨Î»ÖÃµÄÔªËØ
-	virtual void prev() = 0;                           //½«Ö¸¶¨Î»ÖÃÏòÇ°ÒÆ¶¯Ò»Î»
-	virtual void next() = 0;                           //½«Ö¸¶¨Î»ÖÃÏòºóÒÆ¶¯Ò»Î»
+	virtual unsigned curPos() = 0;                     //è¿”å›å½“å‰æŒ‡å®šä½ç½®
+	virtual bool setPos(unsigned pos) = 0;             //è®¾ç½®æŒ‡å®šçš„ä½ç½®
+	virtual void moveToFront() = 0;                    //è®¾ç½®æŒ‡å®šä½ç½®è‡³è¡¨å¤´
+	virtual void moveToBack() = 0;                     //è®¾ç½®æŒ‡å®šä½ç½®è‡³è¡¨å°¾
+	virtual bool getValue(Elem &e)const = 0;           //è·å–å½“å‰æŒ‡å®šä½ç½®çš„å…ƒç´ 
+	virtual void prev() = 0;                           //å°†æŒ‡å®šä½ç½®å‘å‰ç§»åŠ¨ä¸€ä½
+	virtual void next() = 0;                           //å°†æŒ‡å®šä½ç½®å‘åç§»åŠ¨ä¸€ä½
 
-	virtual bool isEmpty()const = 0;                   //ÅĞ¶ÏÁĞ±íÊÇ·ñÎª¿Õ
-	virtual unsigned length()const = 0;                //·µ»ØÁĞ±í³¤¶È
+	virtual bool isEmpty()const = 0;                   //åˆ¤æ–­åˆ—è¡¨æ˜¯å¦ä¸ºç©º
+	virtual unsigned length()const = 0;                //è¿”å›åˆ—è¡¨é•¿åº¦
 };
 #endif // !LIST_H
 
