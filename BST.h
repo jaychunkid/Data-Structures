@@ -1,6 +1,6 @@
-//¶ş²æËÑË÷Ê÷ÊµÏÖ
-//×ó×ÓÊ÷ÖĞµÄ½Úµã¼üÖµĞ¡ÓÚ¸ù½Úµã¼üÖµ
-//ÓÒ×ÓÊ÷ÖĞµÄ½Úµã¼üÖµ´óÓÚµÈÓÚ¸ù½Úµã¼üÖµ
+//äºŒå‰æœç´¢æ ‘å®ç°
+//å·¦å­æ ‘ä¸­çš„èŠ‚ç‚¹é”®å€¼å°äºæ ¹èŠ‚ç‚¹é”®å€¼
+//å³å­æ ‘ä¸­çš„èŠ‚ç‚¹é”®å€¼å¤§äºç­‰äºæ ¹èŠ‚ç‚¹é”®å€¼
 #ifndef BST_H
 #define BST_H
 
@@ -10,10 +10,10 @@ using std::cout;
 
 template <typename Key, typename Elem>
 class BST {
-	BSTNode<Key, Elem>* root = nullptr;          //Ê÷¸ù½Úµã
-	unsigned count = 0;                          //Í³¼Æ½Úµã¸öÊı
+	BSTNode<Key, Elem>* root = nullptr;          //æ ‘æ ¹èŠ‚ç‚¹
+	unsigned count = 0;                          //ç»Ÿè®¡èŠ‚ç‚¹ä¸ªæ•°
 
-	//ÄÚ²¿µİ¹éº¯Êı
+	//å†…éƒ¨é€’å½’å‡½æ•°
 	void clearHelp(BSTNode<Key, Elem>*);
 	BSTNode<Key, Elem>* insertHelp(BSTNode<Key, Elem>* subroot, const Key &k, const Elem &e);
 	BSTNode<Key, Elem>* searchHelp(BSTNode<Key, Elem>* subroot, const Key &k)const;
@@ -23,24 +23,24 @@ class BST {
 	BSTNode<Key, Elem>* getMin(BSTNode<Key, Elem>* subroot);
 
 public:
-	//¹¹Ôìº¯ÊıºÍÎö¹¹º¯Êı
+	//æ„é€ å‡½æ•°å’Œææ„å‡½æ•°
 	BST() {}               
 	~BST() { clear(); }   
 	
-	//Çå¿ÕÊ÷ÖĞµÄËùÓĞ½Úµã
+	//æ¸…ç©ºæ ‘ä¸­çš„æ‰€æœ‰èŠ‚ç‚¹
 	void clear() {          
 		clearHelp(root);
 		root = nullptr;
 		count = 0;
 	}
 	
-	//ÏòÊ÷ÖĞ²åÈë½Úµã
+	//å‘æ ‘ä¸­æ’å…¥èŠ‚ç‚¹
 	void insert(const Key &k, const Elem &e) {  
 		root = insertHelp(root, k, e);
 		++count;
 	}  
 	
-	//ÔÚÊ÷ÖĞ²éÕÒ¶ÔÓ¦¼üÖµkµÄ½Úµã£¬·µ»Ø½ÚµãÔªËØµÄÖµ
+	//åœ¨æ ‘ä¸­æŸ¥æ‰¾å¯¹åº”é”®å€¼kçš„èŠ‚ç‚¹ï¼Œè¿”å›èŠ‚ç‚¹å…ƒç´ çš„å€¼
 	bool search(const Key &k, Elem &e)const {   
 		BSTNode<Key, Elem>* tmp = searchHelp(root, k);
 		if (tmp == nullptr)
@@ -51,7 +51,7 @@ public:
 		}
 	}
 	
-	//É¾³ıÊ÷ÖĞ¶ÔÓ¦¼üÖµkµÄ½Úµã£¬·µ»Ø±»É¾³ı½ÚµãÔªËØµÄÖµ
+	//åˆ é™¤æ ‘ä¸­å¯¹åº”é”®å€¼kçš„èŠ‚ç‚¹ï¼Œè¿”å›è¢«åˆ é™¤èŠ‚ç‚¹å…ƒç´ çš„å€¼
 	bool remove(const Key &k, Elem &e) {
 		if (!search(k, e))
 			return false;
@@ -62,27 +62,27 @@ public:
 		}
 	}
 	
-	//Êä³öÊ÷½á¹¹
+	//è¾“å‡ºæ ‘ç»“æ„
 	void print()const {
 		printHelp(root, 0);
 	}
 
-	//·µ»ØÊ÷µÄ´óĞ¡£¨½ÚµãÊıÄ¿£©
+	//è¿”å›æ ‘çš„å¤§å°ï¼ˆèŠ‚ç‚¹æ•°ç›®ï¼‰
 	unsigned size() { return count; }
 
-	//ÅĞ¶ÏÊ÷ÊÇ·ñÎª¿Õ
+	//åˆ¤æ–­æ ‘æ˜¯å¦ä¸ºç©º
 	bool isEmpty()const { return !count; }     
 };
 
-//µİ¹éº¯ÊıÊµÏÖÉ¾³ıÕû¿ÃÊ÷µÄ½Úµã
+//é€’å½’å‡½æ•°å®ç°åˆ é™¤æ•´æ£µæ ‘çš„èŠ‚ç‚¹
 template <typename Key, typename Elem>
 void BST<Key, Elem>::clearHelp(BSTNode<Key, Elem>* subroot) {
 	
-	//Óöµ½¿Õ½Úµã£¬Ö±½Ó·µ»Ø
+	//é‡åˆ°ç©ºèŠ‚ç‚¹ï¼Œç›´æ¥è¿”å›
 	if (subroot == nullptr)
 		return;
 
-	//·Ç¿Õ½Úµã£¬±éÀú×óÓÒ×ÓÊ÷ºóÉ¾³ı½Úµã£¬·µ»Ø
+	//éç©ºèŠ‚ç‚¹ï¼Œéå†å·¦å³å­æ ‘ååˆ é™¤èŠ‚ç‚¹ï¼Œè¿”å›
 	else {
 		clearHelp(subroot->leftChild());
 		clearHelp(subroot->rightChild());
@@ -91,67 +91,67 @@ void BST<Key, Elem>::clearHelp(BSTNode<Key, Elem>* subroot) {
 	}
 }
 
-//µİ¹éº¯ÊıÊµÏÖÏòÊ÷ÖĞ²åÈë½Úµã
+//é€’å½’å‡½æ•°å®ç°å‘æ ‘ä¸­æ’å…¥èŠ‚ç‚¹
 template <typename Key, typename Elem>
 BSTNode<Key, Elem>* BST<Key, Elem>::insertHelp(BSTNode<Key, Elem>* subroot, 
 	const Key &k, const Elem &e) {
 
-	//Óöµ½¿Õ½Úµã£¬²åÈë½Úµãºó·µ»Ø
+	//é‡åˆ°ç©ºèŠ‚ç‚¹ï¼Œæ’å…¥èŠ‚ç‚¹åè¿”å›
 	if (subroot == nullptr)
 		return new BSTNode<Key, Elem>(k, e);
 	
-	//´ı²åÈë½Úµã¼üÖµĞ¡ÓÚ¸ù½Úµã¼üÖµ£¬¸üĞÂ½Úµã×ó×ÓÊ÷
+	//å¾…æ’å…¥èŠ‚ç‚¹é”®å€¼å°äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼Œæ›´æ–°èŠ‚ç‚¹å·¦å­æ ‘
 	if (k < subroot->getKey())
 		subroot->setLeft(insertHelp(subroot->leftChild(), k, e));
 
-	//´ı²åÈë½Úµã¼üÖµ´óÓÚµÈÓÚ¸ù½Úµã¼üÖµ£¬¸üĞÂ½ÚµãÓÒ×ÓÊ÷
+	//å¾…æ’å…¥èŠ‚ç‚¹é”®å€¼å¤§äºç­‰äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼Œæ›´æ–°èŠ‚ç‚¹å³å­æ ‘
 	else
 		subroot->setRight(insertHelp(subroot->rightChild(), k, e));
 
-	return subroot;          //·µ»Ø¸üĞÂºóµÄ½Úµã
+	return subroot;          //è¿”å›æ›´æ–°åçš„èŠ‚ç‚¹
 }
 
-//µİ¹éº¯ÊıÊµÏÖÔÚÊ÷ÖĞËÑË÷Ö¸¶¨½Úµã
+//é€’å½’å‡½æ•°å®ç°åœ¨æ ‘ä¸­æœç´¢æŒ‡å®šèŠ‚ç‚¹
 template <typename Key, typename Elem>
 BSTNode<Key, Elem>* BST<Key, Elem>::searchHelp(BSTNode<Key, Elem>* subroot, const Key &k)const {
 
-	//Óöµ½¿Õ½Úµã£¬Ö¸¶¨½Úµã²»´æÔÚ£¬·µ»Ø¿ÕÖµ
+	//é‡åˆ°ç©ºèŠ‚ç‚¹ï¼ŒæŒ‡å®šèŠ‚ç‚¹ä¸å­˜åœ¨ï¼Œè¿”å›ç©ºå€¼
 	if (subroot == nullptr)
 		return nullptr;
 
-	//´ı²éÕÒ½Úµã¼üÖµĞ¡ÓÚ¸ù½Úµã¼üÖµ£¬²éÕÒ×ó×ÓÊ÷
+	//å¾…æŸ¥æ‰¾èŠ‚ç‚¹é”®å€¼å°äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼ŒæŸ¥æ‰¾å·¦å­æ ‘
 	if (k < subroot->getKey())
 		return searchHelp(subroot->leftChild(), k);
 
-	//´ı²éÕÒ½Úµã¼üÖµ´óÓÚ¸ù½Úµã¼üÖµ£¬²éÕÒÓÒ×ÓÊ÷
+	//å¾…æŸ¥æ‰¾èŠ‚ç‚¹é”®å€¼å¤§äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼ŒæŸ¥æ‰¾å³å­æ ‘
 	else if (k > subroot->getKey())
 		return searchHelp(subroot->rightChild(), k);
 
-	//¸ù½ÚµãÎª´ı²éÕÒ½Úµã£¬·µ»Ø
+	//æ ¹èŠ‚ç‚¹ä¸ºå¾…æŸ¥æ‰¾èŠ‚ç‚¹ï¼Œè¿”å›
 	else
 		return subroot;
 }
 
-//µİ¹éº¯ÊıÊµÏÖÉ¾³ıÊéÖĞµÄÖ¸¶¨½Úµã
+//é€’å½’å‡½æ•°å®ç°åˆ é™¤æ ‘ä¸­çš„æŒ‡å®šèŠ‚ç‚¹
 template <typename Key, typename Elem>
 BSTNode<Key, Elem>* BST<Key, Elem>::removeHelp(BSTNode<Key, Elem>* subroot, const Key &k) {
 
-	//´ıÉ¾³ı½Úµã¼üÖµĞ¡ÓÚ¸ù½Úµã¼üÖµ£¬¸üĞÂ×ó×ÓÊ÷
+	//å¾…åˆ é™¤èŠ‚ç‚¹é”®å€¼å°äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼Œæ›´æ–°å·¦å­æ ‘
 	if (k < subroot->getKey()) {
 		subroot->setLeft(removeHelp(subroot->leftChild(), k));
 		return subroot;
 	}
 
-	//´ıÉ¾³ı½Úµã¼üÖµ´óÓÚ¸ù½Úµã¼üÖµ£¬¸üĞÂÓÒ×ÓÊ÷
+	//å¾…åˆ é™¤èŠ‚ç‚¹é”®å€¼å¤§äºæ ¹èŠ‚ç‚¹é”®å€¼ï¼Œæ›´æ–°å³å­æ ‘
 	else if (k > subroot->getKey()) {
 		subroot->setRight(removeHelp(subroot->rightChild(), k));
 		return subroot;
 	}
 
-	//ÕÒµ½´ıÉ¾³ı½Úµã
+	//æ‰¾åˆ°å¾…åˆ é™¤èŠ‚ç‚¹
 	else {
 
-		//´ıÉ¾³ı½ÚµãÊÇÒ¶½Úµã£¬Ö±½ÓÉ¾³ı
+		//å¾…åˆ é™¤èŠ‚ç‚¹æ˜¯å¶èŠ‚ç‚¹ï¼Œç›´æ¥åˆ é™¤
 		if (subroot->isLeaf()) {
 			delete subroot;
 			return nullptr;
@@ -159,88 +159,88 @@ BSTNode<Key, Elem>* BST<Key, Elem>::removeHelp(BSTNode<Key, Elem>* subroot, cons
 
 		BSTNode<Key, Elem>* tmp = nullptr;
 
-		//´ıÉ¾³ı½ÚµãÖ»ÓĞÓÒ×ÓÊ÷£¬ÓÒ×ÓÊ÷¸ù½ÚµãÌæ»»´ıÉ¾³ı½ÚµãÎ»ÖÃ
+		//å¾…åˆ é™¤èŠ‚ç‚¹åªæœ‰å³å­æ ‘ï¼Œå³å­æ ‘æ ¹èŠ‚ç‚¹æ›¿æ¢å¾…åˆ é™¤èŠ‚ç‚¹ä½ç½®
 		if (subroot->leftChild() == nullptr) {
 			tmp = subroot->rightChild();
 			delete subroot;
 			return tmp;
 		}
 
-		//´ıÉ¾³ı½ÚµãÖ»ÓĞ×ó×ÓÊ÷£¬×ó×ÓÊ÷¸ù½ÚµãÌæ»»´ıÉ¾³ı½ÚµãÎ»ÖÃ
+		//å¾…åˆ é™¤èŠ‚ç‚¹åªæœ‰å·¦å­æ ‘ï¼Œå·¦å­æ ‘æ ¹èŠ‚ç‚¹æ›¿æ¢å¾…åˆ é™¤èŠ‚ç‚¹ä½ç½®
 		if (subroot->rightChild() == nullptr) {
 			tmp = subroot->leftChild();
 			delete subroot;
 			return tmp;
 		}
 	
-		//´ıÉ¾³ı½ÚµãÓĞ×óÓÒ×ÓÊ÷£¬´ÓÓÒ×ÓÊ÷ÖĞ»ñÈ¡×îĞ¡½ÚµãÌæ»»´ıÉ¾³ı½ÚµãÎ»ÖÃ
+		//å¾…åˆ é™¤èŠ‚ç‚¹æœ‰å·¦å³å­æ ‘ï¼Œä»å³å­æ ‘ä¸­è·å–æœ€å°èŠ‚ç‚¹æ›¿æ¢å¾…åˆ é™¤èŠ‚ç‚¹ä½ç½®
 		tmp = getMin(subroot->rightChild());
 		subroot->setRight(deleteMin(subroot->rightChild()));
 		subroot->setElem(tmp->getKey(), tmp->getElem());
 		delete tmp;
 
-		return subroot;          //·µ»Ø¸üĞÂºóµÄ¸ù½Úµã
+		return subroot;          //è¿”å›æ›´æ–°åçš„æ ¹èŠ‚ç‚¹
 	}
 }
 
-//µİ¹éÊµÏÖÉ¾³ıÊ÷ÖĞµÄ×îĞ¡½Úµã
+//é€’å½’å®ç°åˆ é™¤æ ‘ä¸­çš„æœ€å°èŠ‚ç‚¹
 template <typename Key, typename Elem>
 BSTNode<Key, Elem>* BST<Key, Elem>::deleteMin(BSTNode<Key, Elem>* subroot) {
 
-	//¸ù½ÚµãÎª¿Õ£¬·µ»Ø¿ÕÖµ
+	//æ ¹èŠ‚ç‚¹ä¸ºç©ºï¼Œè¿”å›ç©ºå€¼
 	if (subroot == nullptr)
 		return nullptr;
 
-	//µ±Ç°½ÚµãÊÇ×îĞ¡½Úµã£¬ÓÒ×ÓÊ÷¸ù½ÚµãÌæ´úµ±Ç°½ÚµãÎ»ÖÃ
+	//å½“å‰èŠ‚ç‚¹æ˜¯æœ€å°èŠ‚ç‚¹ï¼Œå³å­æ ‘æ ¹èŠ‚ç‚¹æ›¿ä»£å½“å‰èŠ‚ç‚¹ä½ç½®
 	if (subroot->leftChild() == nullptr) {
 		BSTNode<Key, Elem>* tmp = subroot->rightChild();
 		delete subroot;
 		return tmp;
 	}
 	
-	//µ±Ç°½Úµã²»ÊÇ×îĞ¡½Úµã£¬¸üĞÂ×ó×ÓÊ÷
+	//å½“å‰èŠ‚ç‚¹ä¸æ˜¯æœ€å°èŠ‚ç‚¹ï¼Œæ›´æ–°å·¦å­æ ‘
 	else {
 		subroot->setLeft(deleteMin(subroot->leftChild()));
 		return subroot;
 	}
 }
 
-//µİ¹éÊµÏÖ»ñÈ¡Ê÷ÖĞ×îĞ¡µÄ½Úµã
+//é€’å½’å®ç°è·å–æ ‘ä¸­æœ€å°çš„èŠ‚ç‚¹
 template <typename Key, typename Elem>
 BSTNode<Key, Elem>* BST<Key, Elem>::getMin(BSTNode<Key, Elem>* subroot) {
 
-	//¸ù½ÚµãÎª¿Õ£¬·µ»Ø¿ÕÖµ
+	//æ ¹èŠ‚ç‚¹ä¸ºç©ºï¼Œè¿”å›ç©ºå€¼
 	if (subroot == nullptr)
 		return nullptr;
 
-	//µ±Ç°½ÚµãÊÇ×îĞ¡½Úµã£¬·µ»Ø½Úµã
+	//å½“å‰èŠ‚ç‚¹æ˜¯æœ€å°èŠ‚ç‚¹ï¼Œè¿”å›èŠ‚ç‚¹
 	if (subroot->leftChild() == nullptr)
 		return subroot;
 
-	//µ±Ç°½Úµã²»ÊÇ×îĞ¡½Úµã£¬ÔÚ×ó×ÓÊ÷ÖĞ²éÕÒ
+	//å½“å‰èŠ‚ç‚¹ä¸æ˜¯æœ€å°èŠ‚ç‚¹ï¼Œåœ¨å·¦å­æ ‘ä¸­æŸ¥æ‰¾
 	else
 		return getMin(subroot->leftChild());
 }
 
-//µİ¹éÊµÏÖÊä³öÊ÷µÄ½á¹¹£¬µ±Ç°½ÚµãµÄ¸ß¶ÈÎªlevel
+//é€’å½’å®ç°è¾“å‡ºæ ‘çš„ç»“æ„ï¼Œå½“å‰èŠ‚ç‚¹çš„é«˜åº¦ä¸ºlevel
 template <typename Key, typename Elem>
 void BST<Key, Elem>::printHelp(const BSTNode<Key, Elem>* subroot, unsigned level)const {
 	
-	//Óöµ½¿Õ½Úµã£¬Ö±½Ó·µ»Ø
+	//é‡åˆ°ç©ºèŠ‚ç‚¹ï¼Œç›´æ¥è¿”å›
 	if (subroot == nullptr)
 		return;
 
-	//ÏÈ±éÀúÓÒ×ÓÊ÷
+	//å…ˆéå†å³å­æ ‘
 	printHelp(subroot->rightChild(), level + 1);
 
-	//¸ù¾İµ±Ç°½ÚµãµÄ¸ß¶ÈÊ¹ÓÃ¿Õ¸ñ·û¿ØÖÆ¸ñÊ½
+	//æ ¹æ®å½“å‰èŠ‚ç‚¹çš„é«˜åº¦ä½¿ç”¨ç©ºæ ¼ç¬¦æ§åˆ¶æ ¼å¼
 	for (unsigned i = 0; i < level; ++i)
 		cout << ' ';
 
-	//Êä³öµ±Ç°½Úµã¼üÖµ
+	//è¾“å‡ºå½“å‰èŠ‚ç‚¹é”®å€¼
 	cout << subroot->getKey() << '\n';
 
-	//×îºó±éÀú×ó×ÓÊ÷
+	//æœ€åéå†å·¦å­æ ‘
 	printHelp(subroot->leftChild(), level + 1);
 	return;
 }
